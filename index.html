@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz: Seu Perfil de Ganhador Online</title>
+    <title>Quiz: Your Online Winner Profile</title>
     <style>
-        /* PALETA PREMIUM */
+        /* PREMIUM COLOR PALETTE */
         :root {
-            --bg: #0a0a0a; /* Preto profundo */
-            --card: rgba(255, 214, 102, 0.1); /* Amarelo translúcido */
-            --text: #f0f0f0; /* Branco suave */
+            --bg: #0a0a0a; /* Deep black */
+            --card: rgba(255, 214, 102, 0.1); /* Translucent yellow */
+            --text: #f0f0f0; /* Soft white */
             --text-secondary: #b0b0b0;
-            --accent: #FFD166; /* Amarelo dourado */
+            --accent: #FFD166; /* Golden yellow */
             --accent-dark: #e6b84c;
             --option-bg: rgba(255, 255, 255, 0.08);
             --progress: linear-gradient(90deg, #FFD166, #FF9E1B);
             --shadow: 0 12px 28px rgba(255, 214, 102, 0.08);
         }
         
-        /* RESET E FONTES */
+        /* RESET AND FONTS */
         * {
             margin: 0;
             padding: 0;
@@ -37,7 +37,7 @@
             line-height: 1.6;
         }
         
-        /* CONTAINER PRINCIPAL (Glassmorphism Premium) */
+        /* MAIN CONTAINER (Premium Glassmorphism) */
         .container {
             width: 100%;
             max-width: 600px;
@@ -52,7 +52,7 @@
             overflow: hidden;
         }
         
-        /* BARRA DE CARREGAMENTO DOURADA */
+        /* GOLDEN LOADING BAR */
         .global-loader {
             position: absolute;
             top: 0;
@@ -69,7 +69,7 @@
             transition: width 0.5s ease;
         }
         
-        /* CABEÇALHO */
+        /* HEADER */
         h1 {
             font-size: 32px;
             margin-bottom: 15px;
@@ -91,7 +91,7 @@
             line-height: 1.5;
         }
         
-        /* CONTADOR DE USUÁRIOS ESTILIZADO */
+        /* STYLIZED USER COUNTER */
         .user-counter {
             background: rgba(255, 214, 102, 0.1);
             padding: 10px 18px;
@@ -111,7 +111,7 @@
             color: var(--accent);
         }
         
-        /* PERGUNTAS */
+        /* QUESTIONS */
         .question-container {
             margin: 25px 0;
             animation: fadeIn 0.5s;
@@ -124,7 +124,7 @@
             color: var(--text);
         }
         
-        /* OPÇÕES COM DESIGN PREMIUM */
+        /* PREMIUM OPTION DESIGN */
         .options {
             display: flex;
             flex-direction: column;
@@ -152,7 +152,7 @@
             border-color: rgba(255, 214, 102, 0.3);
         }
         
-        /* BARRA DE PROGRESSO */
+        /* PROGRESS BAR */
         .progress-container {
             width: 100%;
             height: 6px;
@@ -170,7 +170,7 @@
             transition: width 0.5s ease;
         }
         
-        /* CONTADOR REGRESSIVO */
+        /* COUNTDOWN TIMER */
         .countdown {
             font-size: 16px;
             margin: 20px 0;
@@ -186,7 +186,7 @@
             color: var(--accent);
         }
         
-        /* MENSAGEM DE RESULTADO */
+        /* RESULT MESSAGE */
         .result-message {
             display: none;
             padding: 30px;
@@ -223,13 +223,13 @@
             transition: width 0.5s;
         }
         
-        /* ANIMAÇÕES */
+        /* ANIMATIONS */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* RESPONSIVIDADE */
+        /* RESPONSIVENESS */
         @media (max-width: 600px) {
             .container {
                 padding: 30px 20px;
@@ -257,90 +257,90 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- BARRA DE CARREGAMENTO DOURADA -->
+    <!-- GOLDEN LOADING BAR -->
     <div class="global-loader">
         <div class="global-loader-bar" id="global-loader"></div>
     </div>
 
     <div class="container">
-        <h1>🎯 QUAL SEU PERFIL DE GANHADOR ONLINE?</h1>
+        <h1>🎯 WHAT'S YOUR ONLINE WINNER PROFILE?</h1>
         
-        <!-- CONTADOR DE USUÁRIOS PREMIUM -->
+        <!-- PREMIUM USER COUNTER -->
         <div class="user-counter">
-            <span>👥</span> <span id="user-count">2,587</span> pessoas usando agora
+            <span>👥</span> <span id="user-count">2,587</span> people using now
         </div>
         
-        <p class="subtitle">Responda 2 perguntas e descubra as melhores plataformas para você!</p>
+        <p class="subtitle">Answer 2 questions and discover the best platforms for you!</p>
         
         <div id="quiz">
-            <!-- PERGUNTA 1 -->
+            <!-- QUESTION 1 -->
             <div class="question-container" id="q1">
-                <div class="question">1. Como você prefere ganhar dinheiro na internet?</div>
+                <div class="question">1. How do you prefer to make money online?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(1)">Clicando em anúncios (PTC)</button>
-                    <button class="option-btn" onclick="nextQuestion(1)">Coletando criptomoedas (Faucets)</button>
-                    <button class="option-btn" onclick="nextQuestion(1)">Tarefas que pagam em dólar (CPA/Offers)</button>
+                    <button class="option-btn" onclick="nextQuestion(1)">Clicking on ads (PTC)</button>
+                    <button class="option-btn" onclick="nextQuestion(1)">Collecting cryptocurrencies (Faucets)</button>
+                    <button class="option-btn" onclick="nextQuestion(1)">Tasks that pay in dollars (CPA/Offers)</button>
                 </div>
             </div>
             
-            <!-- PERGUNTA 2 (OCULTA INICIALMENTE) -->
+            <!-- QUESTION 2 (HIDDEN INITIALLY) -->
             <div class="question-container" id="q2" style="display: none;">
-                <div class="question">2. Quanto tempo você pode dedicar por dia?</div>
+                <div class="question">2. How much time can you dedicate per day?</div>
                 <div class="options">
-                    <button class="option-btn" onclick="nextQuestion(2)">Menos de 1 hora</button>
-                    <button class="option-btn" onclick="nextQuestion(2)">1-3 horas</button>
-                    <button class="option-btn" onclick="nextQuestion(2)">Mais de 3 horas (quero maximizar!)</button>
+                    <button class="option-btn" onclick="nextQuestion(2)">Less than 1 hour</button>
+                    <button class="option-btn" onclick="nextQuestion(2)">1-3 hours</button>
+                    <button class="option-btn" onclick="nextQuestion(2)">More than 3 hours (I want to maximize!)</button>
                 </div>
             </div>
         </div>
         
-        <!-- BARRA DE PROGRESSO DOURADA -->
+        <!-- GOLDEN PROGRESS BAR -->
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
         
-        <!-- CONTADOR REGRESSIVO ESTILIZADO -->
+        <!-- STYLIZED COUNTDOWN -->
         <div class="countdown">
-            ⏳ <span id="countdown">15</span> segundos restantes
+            ⏳ <span id="countdown">15</span> seconds remaining
         </div>
         
-        <!-- MENSAGEM DE REDIRECIONAMENTO PREMIUM -->
+        <!-- PREMIUM REDIRECTION MESSAGE -->
         <div class="result-message" id="result-message">
-            <h2>🎉 PARABÉNS!</h2>
-            <p>Estamos preparando sua lista personalizada com as melhores plataformas...</p>
+            <h2>🎉 CONGRATULATIONS!</h2>
+            <p>We're preparing your personalized list with the best platforms...</p>
             
             <div class="loading-container">
                 <div class="loading-bar">
                     <div class="loading-progress" id="loading-bar"></div>
                 </div>
-                <p style="margin-top: 12px; color: var(--text-secondary);">Redirecionando em <span id="redirect-countdown">5</span>s</p>
+                <p style="margin-top: 12px; color: var(--text-secondary);">Redirecting in <span id="redirect-countdown">5</span>s</p>
             </div>
         </div>
     </div>
 
     <script>
-        // ========== CONFIGURAÇÕES ========== //
+        // ========== CONFIGURATION ========== //
         const totalQuestions = 2;
         let currentQuestion = 1;
         let userInteracted = false;
         let countdownInterval;
         let globalLoaderInterval;
         
-        // ========== INICIALIZAÇÃO ========== //
+        // ========== INITIALIZATION ========== //
         document.addEventListener('DOMContentLoaded', () => {
-            // Inicia barra de carregamento global
+            // Start global loading bar
             animateGlobalLoader();
             
-            // Inicia contador de usuários dinâmico
+            // Start dynamic user counter
             startUserCounter();
             
-            // Inicia contador regressivo (15s)
+            // Start countdown (15s)
             startCountdown(15, 'countdown', () => {
                 if (!userInteracted) showResultMessage();
             });
         });
         
-        // ========== ANIMAÇÕES ========== //
+        // ========== ANIMATIONS ========== //
         function animateGlobalLoader() {
             let progress = 0;
             const loader = document.getElementById('global-loader');
@@ -364,12 +364,12 @@
             
             const increment = () => {
                 baseUsers += 1;
-                userElement.textContent = baseUsers.toLocaleString('pt-BR');
+                userElement.textContent = baseUsers.toLocaleString('en-US');
                 
                 if (baseUsers < targetUsers) {
                     setTimeout(increment, Math.random() * 3000);
                 } else {
-                    // Novo target após atingir o anterior
+                    // New target after reaching previous one
                     targetUsers = baseUsers + Math.floor(Math.random() * 200);
                     setTimeout(increment, 5000);
                 }
@@ -378,7 +378,7 @@
             increment();
         }
         
-        // ========== LÓGICA DO QUIZ ========== //
+        // ========== QUIZ LOGIC ========== //
         function nextQuestion(q) {
             userInteracted = true;
             document.getElementById(`q${q}`).style.display = 'none';
@@ -398,14 +398,14 @@
             document.getElementById('progress-bar').style.width = `${progress}%`;
         }
         
-        // ========== REDIRECIONAMENTO ========== //
+        // ========== REDIRECTION ========== //
         function showResultMessage() {
             clearInterval(countdownInterval);
             document.getElementById('quiz').style.display = 'none';
             document.querySelector('.countdown').style.display = 'none';
             document.getElementById('result-message').style.display = 'block';
             
-            // Animação da barra de carregamento
+            // Loading bar animation
             let progress = 0;
             const loadingBar = document.getElementById('loading-bar');
             const loadingInterval = setInterval(() => {
@@ -414,13 +414,13 @@
                 if (progress >= 100) clearInterval(loadingInterval);
             }, 50);
             
-            // Contador para redirecionamento (5s)
+            // Redirection countdown (5s)
             startCountdown(5, 'redirect-countdown', () => {
-                window.location.href = "main.html"; // ALTERE PARA SUA PÁGINA PRINCIPAL
+                window.location.href = "main.html"; // CHANGE TO YOUR MAIN PAGE
             });
         }
         
-        // ========== CONTADOR REGRESSIVO ========== //
+        // ========== COUNTDOWN TIMER ========== //
         function startCountdown(seconds, elementId, callback) {
             let timeLeft = seconds;
             const element = document.getElementById(elementId);
@@ -441,7 +441,7 @@
             }, 1000);
         }
         
-        // ========== DETECTA INTERAÇÃO ========== //
+        // ========== DETECT INTERACTION ========== //
         document.addEventListener('click', () => userInteracted = true);
         document.addEventListener('scroll', () => userInteracted = true);
         document.addEventListener('touchstart', () => userInteracted = true);
