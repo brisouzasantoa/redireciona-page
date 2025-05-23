@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descubra Seu Perfil de Ganhador Online</title>
+    <style>
+        /* DESIGN PROFISSIONAL - MOBILE FIRST */
+        :root {
+            --primary: #3498db;
+            --secondary: #e74c3c;
+            --accent: #f1c40f;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, var(--dark), #34495e);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        h1 {
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        .highlight {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        .btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 10px 5px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 0 #c0392b, 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 0 #c0392b, 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 0 #c0392b;
+        }
+        #quiz-container {
+            position: relative;
+            min-height: 200px;
+        }
+        .question {
+            animation: fadeIn 0.5s;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        #progress-container {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            margin: 25px 0;
+            overflow: hidden;
+        }
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 10px;
+            transition: width 0.5s;
+        }
+        #countdown {
+            font-size: 16px;
+            color: var(--accent);
+            margin: 15px 0;
+        }
+        #inactive-message {
+            display: none;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .testimonial {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-style: italic;
+            position: relative;
+        }
+        .testimonial::before {
+            content: """;
+            font-size: 50px;
+            color: var(--accent);
+            position: absolute;
+            left: 10px;
+            top: -15px;
+        }
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .badge {
+            background: rgba(255,255,255,0.1);
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 24px;
+            }
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 <span class="highlight">TESTE RÁPIDO:</span> Qual Seu Perfil de Ganhador Online?</h1>
+        
+        <div class="trust-badges">
+            <div class="badge">✅ 2.587 pessoas usaram hoje</div>
+            <div class="badge">🔒 100% seguro</div>
+        </div>
+        
+        <div class="testimonial">
+            "Descobri um faucet que paga 5x mais com esse teste! Ganhei R$ 200 em uma semana!"<br>
+            - <strong>Marcos, 31 anos</strong>
+        </div>
+        
+        <p>Responda 2 perguntas e receba uma <strong>lista personalizada</strong> das melhores plataformas para <span class="highlight">SEU perfil</span>:</p>
+        
+        <div id="quiz-container">
+            <!-- Pergunta 1 (visível inicialmente) -->
+            <div class="question" id="q1">
+                <h3>1. Como você prefere ganhar dinheiro?</h3>
+                <button class="btn" onclick="nextQuestion(1)">Clicando em anúncios (PTC)</button><br>
+                <button class="btn" onclick="nextQuestion(1)">Coletando criptomoedas (Faucet)</button><br>
+                <button class="btn pulse" onclick="nextQuestion(1)">Tarefas que pagam em dólar (CPA)</button>
+            </div>
+            
+            <!-- Pergunta 2 (oculta inicialmente) -->
+            <div class="question" id="q2" style="display:none;">
+                <h3>2. Quanto tempo pode dedicar por dia?</h3>
+                <button class="btn" onclick="nextQuestion(2)">Até 1 hora</button><br>
+                <button class="btn" onclick="nextQuestion(2)">1-3 horas</button><br>
+                <button class="btn pulse" onclick="nextQuestion(2)">+3 horas (quero maximizar!)</button>
+            </div>
+        </div>
+        
+        <div id="progress-container">
+            <div id="progress-bar"></div>
+        </div>
+        
+        <div id="countdown">
+            ⏳ <span id="time">15</span> segundos para responder (oferta limitada!)
+        </div>
+        
+        <!-- Mensagem de redirecionamento automático -->
+        <div id="inactive-message">
+            <h3>Obrigado por participar!</h3>
+            <p>Estamos preparando sua lista personalizada com as <strong>melhores plataformas</strong> para você...</p>
+            <div style="font-size: 24px; margin: 15px 0;">
+                ⏳ <span id="redirect-time">5</span> segundos
+            </div>
+            <div id="fake-progress" style="width: 100%; height: 10px; background: rgba(255,255,255,0.2); border-radius: 5px; margin: 10px 0;">
+                <div id="progress-fill" style="width: 0%; height: 100%; background: var(--accent); border-radius: 5px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configurações
+        const totalQuestions = 2;
+        let currentQuestion = 1;
+        let userInteracted = false;
+        
+        // Elementos
+        const timeElement = document.getElementById('time');
+        const redirectTimeElement = document.getElementById('redirect-time');
+        const inactiveMessage = document.getElementById('inactive-message');
+        const progressBar = document.getElementById('progress-bar');
+        const progressFill = document.getElementById('progress-fill');
+        
+        // Contador regressivo para urgência (15s)
+        let timeLeft = 15;
+        const countdown = setInterval(() => {
+            timeLeft--;
+            timeElement.textContent = timeLeft;
+            
+            if (timeLeft <= 5) {
+                timeElement.style.color = '#e74c3c';
+            }
+            
+            if (timeLeft <= 0 && !userInteracted) {
+                clearInterval(countdown);
+                showRedirectMessage();
+            }
+        }, 1000);
+        
+        // Próxima pergunta
+        function nextQuestion(q) {
+            userInteracted = true;
+            document.getElementById(`q${q}`).style.display = 'none';
+            currentQuestion++;
+            updateProgress();
+            
+            if (currentQuestion <= totalQuestions) {
+                document.getElementById(`q${currentQuestion}`).style.display = 'block';
+            } else {
+                showRedirectMessage();
+            }
+        }
+        
+        // Atualiza barra de progresso
+        function updateProgress() {
+            const progress = (currentQuestion / totalQuestions) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+        
+        // Mostra mensagem de redirecionamento
+        function showRedirectMessage() {
+            inactiveMessage.style.display = 'block';
+            document.getElementById('quiz-container').style.display = 'none';
+            document.getElementById('countdown').style.display = 'none';
+            
+            // Animação de progresso fake
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 2;
+                progressFill.style.width = `${progress}%`;
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                }
+            }, 50);
+            
+            // Contador para redirecionamento (5s)
+            let redirectTime = 5;
+            const redirectInterval = setInterval(() => {
+                redirectTime--;
+                redirectTimeElement.textContent = redirectTime;
+                
+                if (redirectTime <= 0) {
+                    clearInterval(redirectInterval);
+                    window.location.href = "https://seusite.com/lista-personalizada"; // SUBSTITUA SEU LINK AQUI
+                }
+            }, 1000);
+        }
+        
+        // Detecta qualquer interação (clique, scroll, toque)
+        document.addEventListener('click', () => userInteracted = true);
+        document.addEventListener('scroll', () => userInteracted = true);
+        document.addEventListener('touchstart', () => userInteracted = true);
+    </script>
+</body>
+</html>
