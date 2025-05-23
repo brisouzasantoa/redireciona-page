@@ -3,19 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz: Descubra Seu Perfil de Ganhador Online</title>
+    <title>Quiz: Seu Perfil de Ganhador Online</title>
     <style>
-        /* RESET E CONFIGURAÇÕES GERAIS */
+        /* RESET E FONTES */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+        }
+        
+        /* PALETA VIBRANTE */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --dark: #14213d;
+            --light: #f8f9fa;
         }
         
         body {
-            background: linear-gradient(135deg, #2c3e50, #4a6491);
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--light);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -28,66 +38,117 @@
         .container {
             width: 100%;
             max-width: 600px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* BARRA DE CARREGAMENTO SUPERIOR */
+        .global-loader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .global-loader-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--accent);
+            transition: width 0.5s ease;
         }
         
         /* CABEÇALHO */
         h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #f1c40f;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            font-size: 32px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #f72585, #b5179e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
         }
         
         .subtitle {
-            font-size: 16px;
+            font-size: 18px;
             margin-bottom: 30px;
+            font-weight: 500;
+            color: var(--light);
             opacity: 0.9;
+            text-align: center;
+            max-width: 90%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* PERGUNTAS E OPÇÕES */
+        /* CONTADOR DE USUÁRIOS */
+        .user-counter {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 14px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .user-counter span {
+            font-weight: bold;
+            color: var(--success);
+            margin-left: 5px;
+            transition: all 0.3s;
+        }
+        
+        /* PERGUNTAS */
         .question-container {
             margin: 25px 0;
+            animation: fadeIn 0.5s;
         }
         
         .question {
             font-size: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-weight: 500;
+            color: var(--light);
         }
         
+        /* OPÇÕES */
         .options {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
         
         .option-btn {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.3);
-            color: #fff;
-            padding: 14px;
-            border-radius: 50px;
+            color: var(--light);
+            padding: 16px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 16px;
+            text-align: center;
         }
         
         .option-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
             transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .highlight {
-            background: #e74c3c;
-            border-color: #e74c3c;
-            font-weight: bold;
+        .option-btn.highlight {
+            background: var(--accent);
+            border-color: var(--accent);
+            font-weight: 600;
             animation: pulse 2s infinite;
         }
         
@@ -104,46 +165,88 @@
         .progress-bar {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #3498db, #2ecc71);
+            background: linear-gradient(90deg, var(--success), #4895ef);
             border-radius: 10px;
             transition: width 0.5s ease;
         }
         
-        /* CONTADOR E MENSAGENS */
+        /* CONTADOR REGRESSIVO */
         .countdown {
             font-size: 16px;
             margin: 20px 0;
-            color: #f1c40f;
+            color: var(--light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
+        .countdown span {
+            font-weight: bold;
+            color: var(--accent);
+        }
+        
+        /* MENSAGEM DE RESULTADO */
         .result-message {
             display: none;
-            padding: 20px;
+            padding: 25px;
             background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
+            border-radius: 15px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .result-message h2 {
+            color: var(--success);
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+        
+        .loading-container {
             margin-top: 20px;
         }
         
-        /* ANIMAÇÕES */
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        .loading-bar {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
         }
         
+        .loading-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #f72585);
+            transition: width 0.5s;
+        }
+        
+        /* ANIMAÇÕES */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(247, 37, 133, 0.7); }
+            70% { transform: scale(1.02); box-shadow: 0 0 0 10px rgba(247, 37, 133, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(247, 37, 133, 0); }
+        }
+        
         /* RESPONSIVIDADE */
         @media (max-width: 600px) {
             .container {
-                padding: 20px;
+                padding: 25px 20px;
+                border-radius: 15px;
             }
             
             h1 {
-                font-size: 24px;
+                font-size: 26px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
             }
             
             .question {
@@ -151,16 +254,28 @@
             }
             
             .option-btn {
-                padding: 12px;
+                padding: 14px;
                 font-size: 15px;
             }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- BARRA DE CARREGAMENTO GLOBAL -->
+    <div class="global-loader">
+        <div class="global-loader-bar" id="global-loader"></div>
+    </div>
+
     <div class="container">
         <h1>🎯 QUAL SEU PERFIL DE GANHADOR ONLINE?</h1>
-        <p class="subtitle">Responda 2 perguntas e descubra as melhores plataformas para você!</p>
+        
+        <!-- CONTADOR DE USUÁRIOS DINÂMICO -->
+        <div class="user-counter">
+            <span>👥</span> <span id="user-count">2.587</span> pessoas usando agora
+        </div>
+        
+        <p class="subtitle"><strong>Responda 2 perguntas e descubra as melhores plataformas para você!</strong></p>
         
         <div id="quiz">
             <!-- PERGUNTA 1 -->
@@ -169,7 +284,7 @@
                 <div class="options">
                     <button class="option-btn" onclick="nextQuestion(1)">Clicando em anúncios (PTC)</button>
                     <button class="option-btn" onclick="nextQuestion(1)">Coletando criptomoedas (Faucets)</button>
-                    <button class="option-btn highlight" onclick="nextQuestion(1)">Tarefas que pagam em dólar (CPA/Offers)</button>
+                    <button class="option-btn" onclick="nextQuestion(1)">Tarefas que pagam em dólar (CPA/Offers)</button>
                 </div>
             </div>
             
@@ -179,7 +294,7 @@
                 <div class="options">
                     <button class="option-btn" onclick="nextQuestion(2)">Menos de 1 hora</button>
                     <button class="option-btn" onclick="nextQuestion(2)">1-3 horas</button>
-                    <button class="option-btn highlight" onclick="nextQuestion(2)">Mais de 3 horas (quero maximizar!)</button>
+                    <button class="option-btn" onclick="nextQuestion(2)">Mais de 3 horas (quero maximizar!)</button>
                 </div>
             </div>
         </div>
@@ -191,16 +306,17 @@
         
         <!-- CONTADOR REGRESSIVO -->
         <div class="countdown">
-            ⏳ <span id="countdown">15</span> segundos restantes para responder!
+            ⏳ <span id="countdown">15</span> segundos restantes
         </div>
         
         <!-- MENSAGEM DE REDIRECIONAMENTO -->
         <div class="result-message" id="result-message">
             <h2>🎉 Parabéns!</h2>
-            <p>Estamos preparando sua lista personalizada...</p>
-            <div style="margin-top: 15px;">
-                <div style="width: 100%; height: 10px; background: rgba(255,255,255,0.2); border-radius: 5px; overflow: hidden;">
-                    <div id="loading-bar" style="width: 0%; height: 100%; background: #2ecc71; transition: width 0.5s;"></div>
+            <p>Estamos preparando sua lista personalizada com as melhores plataformas...</p>
+            
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="loading-progress" id="loading-bar"></div>
                 </div>
                 <p style="margin-top: 10px;">Redirecionando em <span id="redirect-countdown">5</span>s</p>
             </div>
@@ -208,23 +324,66 @@
     </div>
 
     <script>
-        // CONFIGURAÇÕES
+        // ========== CONFIGURAÇÕES ========== //
         const totalQuestions = 2;
         let currentQuestion = 1;
         let userInteracted = false;
         let countdownInterval;
+        let globalLoaderInterval;
         
-        // ELEMENTOS
-        const countdownElement = document.getElementById('countdown');
-        const progressBar = document.getElementById('progress-bar');
-        const resultMessage = document.getElementById('result-message');
-        
-        // INICIA O CONTADOR REGRESSIVO (15s)
-        startCountdown(15, countdownElement, () => {
-            if (!userInteracted) showResultMessage();
+        // ========== INICIALIZAÇÃO ========== //
+        document.addEventListener('DOMContentLoaded', () => {
+            // Inicia barra de carregamento global
+            animateGlobalLoader();
+            
+            // Inicia contador de usuários dinâmico
+            startUserCounter();
+            
+            // Inicia contador regressivo (15s)
+            startCountdown(15, 'countdown', () => {
+                if (!userInteracted) showResultMessage();
+            });
         });
         
-        // FUNÇÃO PARA PRÓXIMA PERGUNTA
+        // ========== ANIMAÇÕES ========== //
+        function animateGlobalLoader() {
+            let progress = 0;
+            const loader = document.getElementById('global-loader');
+            
+            globalLoaderInterval = setInterval(() => {
+                progress += 1;
+                loader.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(globalLoaderInterval);
+                    loader.style.width = '0%';
+                    setTimeout(animateGlobalLoader, 500);
+                }
+            }, 50);
+        }
+        
+        function startUserCounter() {
+            const userElement = document.getElementById('user-count');
+            let baseUsers = 2587;
+            let targetUsers = baseUsers + Math.floor(Math.random() * 200);
+            
+            const increment = () => {
+                baseUsers += 1;
+                userElement.textContent = baseUsers.toLocaleString('pt-BR');
+                
+                if (baseUsers < targetUsers) {
+                    setTimeout(increment, Math.random() * 3000);
+                } else {
+                    // Novo target após atingir o anterior
+                    targetUsers = baseUsers + Math.floor(Math.random() * 200);
+                    setTimeout(increment, 5000);
+                }
+            };
+            
+            increment();
+        }
+        
+        // ========== LÓGICA DO QUIZ ========== //
         function nextQuestion(q) {
             userInteracted = true;
             document.getElementById(`q${q}`).style.display = 'none';
@@ -239,21 +398,19 @@
             }
         }
         
-        // ATUALIZA BARRA DE PROGRESSO
         function updateProgressBar() {
             const progress = (currentQuestion / totalQuestions) * 100;
-            progressBar.style.width = `${progress}%`;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
         }
         
-        // MOSTRA MENSAGEM DE RESULTADO
+        // ========== REDIRECIONAMENTO ========== //
         function showResultMessage() {
             clearInterval(countdownInterval);
             document.getElementById('quiz').style.display = 'none';
             document.querySelector('.countdown').style.display = 'none';
-            resultMessage.style.display = 'block';
-            resultMessage.style.animation = 'fadeIn 0.5s';
+            document.getElementById('result-message').style.display = 'block';
             
-            // ANIMAÇÃO DA BARRA DE CARREGAMENTO
+            // Animação da barra de carregamento
             let progress = 0;
             const loadingBar = document.getElementById('loading-bar');
             const loadingInterval = setInterval(() => {
@@ -262,15 +419,16 @@
                 if (progress >= 100) clearInterval(loadingInterval);
             }, 50);
             
-            // CONTADOR PARA REDIRECIONAMENTO (5s)
-            startCountdown(5, document.getElementById('redirect-countdown'), () => {
+            // Contador para redirecionamento (5s)
+            startCountdown(5, 'redirect-countdown', () => {
                 window.location.href = "main.html"; // ALTERE PARA SUA PÁGINA PRINCIPAL
             });
         }
         
-        // FUNÇÃO PARA CONTADOR REGRESSIVO
-        function startCountdown(seconds, element, callback) {
+        // ========== CONTADOR REGRESSIVO ========== //
+        function startCountdown(seconds, elementId, callback) {
             let timeLeft = seconds;
+            const element = document.getElementById(elementId);
             element.textContent = timeLeft;
             
             countdownInterval = setInterval(() => {
@@ -278,7 +436,7 @@
                 element.textContent = timeLeft;
                 
                 if (timeLeft <= 5) {
-                    element.style.color = '#e74c3c';
+                    element.style.color = '#f72585';
                 }
                 
                 if (timeLeft <= 0) {
@@ -288,7 +446,7 @@
             }, 1000);
         }
         
-        // DETECTA QUALQUER INTERAÇÃO DO USUÁRIO
+        // ========== DETECTA INTERAÇÃO ========== //
         document.addEventListener('click', () => userInteracted = true);
         document.addEventListener('scroll', () => userInteracted = true);
         document.addEventListener('touchstart', () => userInteracted = true);
