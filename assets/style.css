@@ -536,3 +536,10 @@ h1 {
 .footer-link:hover {
     opacity: 0.8;
 }
+/* ADICIONE ISSO NO FINAL DO SEU CSS */
+.claim-btn {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
