@@ -536,10 +536,24 @@ h1 {
 .footer-link:hover {
     opacity: 0.8;
 }
-/* ADICIONE ISSO NO FINAL DO SEU CSS */
-.claim-btn {
+/* ===== REGRAS PARA LINKS COMO BOTÕES ===== */
+/* Adicione isso no final do seu CSS */
+a.claim-btn {
     display: inline-block;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
+    /* Mantém todas as propriedades originais do .claim-btn */
+}
+
+a.claim-btn:hover {
+    text-decoration: none;
+    /* Mantém os efeitos hover originais */
+}
+
+/* Garante que os links tenham exatamente a mesma aparência dos botões */
+a.claim-btn,
+a.claim-btn:active,
+a.claim-btn:visited {
+    color: white !important;
 }
