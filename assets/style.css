@@ -536,24 +536,32 @@ h1 {
 .footer-link:hover {
     opacity: 0.8;
 }
-/* ===== REGRAS PARA LINKS COMO BOTÕES ===== */
-/* Adicione isso no final do seu CSS */
+/* ===== GARANTINDO ESTILO IDÊNTICO PARA LINKS ===== */
 a.claim-btn {
-    display: inline-block;
-    text-decoration: none;
-    text-align: center;
-    cursor: pointer;
-    /* Mantém todas as propriedades originais do .claim-btn */
+    /* Mantenha TODAS as propriedades do .claim-btn original */
+    background: linear-gradient(90deg, var(--primary), var(--danger)) !important;
+    color: white !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    font-size: 0.95rem !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 12px rgba(255, 149, 0, 0.3) !important;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    display: inline-block !important;
+    
+    /* Pulsação (opcional - só se quiser manter a animação) */
+    animation: pulse 2s infinite !important;
 }
 
 a.claim-btn:hover {
-    text-decoration: none;
-    /* Mantém os efeitos hover originais */
-}
-
-/* Garante que os links tenham exatamente a mesma aparência dos botões */
-a.claim-btn,
-a.claim-btn:active,
-a.claim-btn:visited {
-    color: white !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(255, 149, 0, 0.5) !important;
+    text-decoration: none !important;
 }
