@@ -559,19 +559,32 @@ h1 {
 }
 
 .custom-link-container {
-    margin: 15px 0; /* Espaçamento externo */
-    padding: 12px;
-    border-left: 3px solid #2a7ae2; /* Borda lateral azul */
-    background-color: #f8fafc; /* Fundo cinza claro */
-    font-size: 15px;
+    margin: 20px auto; /* Centraliza horizontalmente */
+    padding: 15px;
+    border-radius: 6px; /* Cantos arredondados */
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); /* Degradê azul */
+    text-align: center; /* Alinha o texto ao centro */
+    max-width: 80%; /* Largura máxima (ajuste conforme necessidade) */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
 .custom-link-container .styled-link {
-    color: #2a7ae2;
+    color: white !important; /* Texto branco */
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 700; /* Negrito */
+    font-size: 16px;
+    display: inline-block; /* Permite alinhamento vertical */
+    padding: 5px 10px;
+    transition: all 0.3s ease;
 }
 
 .custom-link-container .styled-link:hover {
-    text-decoration: underline;
+    transform: translateY(-2px); /* Efeito de levitação */
+    opacity: 0.9;
+}
+
+/* Emoji antes do texto (opcional) */
+.custom-link-container .styled-link::before {
+    content: "🔍 "; /* Emoji de lupa (pode trocar por ➡️, 📚, etc) */
+    filter: brightness(1.2); /* Ajusta brilho do emoji */
 }
